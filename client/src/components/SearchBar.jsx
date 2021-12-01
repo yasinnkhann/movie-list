@@ -24,6 +24,7 @@ export default class SearchBar extends Component {
       <Fragment>
         <input
           type='text'
+          placeholder="Search..."
           name="searchQuery"
           value={this.state.searchQuery}
           onChange={this.handleChange}
