@@ -10,7 +10,7 @@ export default class AddMovies extends Component {
   }
 
   handleChange(e) {
-    this.setState({ addMovieQuery: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   addBtnProxy() {
@@ -25,6 +25,8 @@ export default class AddMovies extends Component {
       <Fragment>
         <input
           type='text'
+          name='addMovieQuery'
+          value={this.state.addMovieQuery}
           placeholder='Add movie title here'
           onChange={this.handleChange}
         />

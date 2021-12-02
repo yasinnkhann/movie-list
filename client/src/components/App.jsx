@@ -1,10 +1,13 @@
 import React, { Component, Fragment } from 'react';
+import axios from 'axios';
 import AddMovies from './AddMovies.jsx';
 import SortMovies from './SortMovies.jsx';
 import SearchBar from './SearchBar.jsx';
 import Movies from './Movies.jsx';
 import movies from '../movies.js';
 import MoviePanel from './MoviePanel.jsx';
+import API_KEY from '../config.js';
+import { instance } from '../axiosInstance.js';
 
 export default class App extends Component {
   constructor(props) {
@@ -29,6 +32,18 @@ export default class App extends Component {
     this.handleToWatchMoviesClick = this.handleToWatchMoviesClick.bind(this);
     this.handleOpenPanel = this.handleOpenPanel.bind(this);
     this.handleClosePanel = this.handleClosePanel.bind(this);
+  }
+
+  async componentDidMount() {
+    try {
+      // https://api.themoviedb.org/3/movie/550?api_key=stuff
+      // const res = await axios.get('https://api.themoviedb.org/3/movie/popular', { params: { api_key: API_KEY } });
+      // // OR USE axios.create instance
+      const res = await instance.get('movie/popular');
+      console.log(res.data.results);
+    } catch(err) {
+      console.error(err);
+    }
   }
 
   handleSubmitSearch(query) {
