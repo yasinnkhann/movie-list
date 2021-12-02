@@ -147,6 +147,7 @@ export default class App extends Component {
         <AddMovies
           addedMoviesList={this.state.addedMovies}
           addBtn={this.handleAddBtn}
+          openPanel={this.handleOpenPanel}
         />
         <SortMovies
           watchedMovies={this.state.watchedMovies}

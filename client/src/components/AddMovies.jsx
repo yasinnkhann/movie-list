@@ -18,8 +18,13 @@ export default class AddMovies extends Component {
     this.setState({ addMovieQuery: '' });
   }
   render() {
-    const mappedAddedMovies = this.props?.addedMoviesList?.map(movie => (
-      <li key={movie.title.toString()}>{movie?.title}</li>
+    const mappedAddedMovies = this.props.addedMoviesList.map(movie => (
+      <li
+        key={movie.title.toString()}
+        onClick={() => this.props.openPanel(movie)}
+      >
+          {movie.title}
+        </li>
     ));
     return (
       <Fragment>
