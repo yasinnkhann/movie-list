@@ -67,16 +67,24 @@ export default class App extends Component {
 
     this.setState({ movies: moviesCopy });
 
+    const moviesWatched = this.state.movies.filter(movieObj => (
+      movieObj.status === 'Watched'
+    ));
+
+    this.setState({ watchedMovies: moviesWatched });
+
+
+    const moviesToWatch = this.state.movies.filter(movieObj => (
+      movieObj.status === 'To Watch'
+    ));
+
+    this.setState({ toWatchMovies: moviesToWatch });
   }
 
   handleWatchedMoviesClick() {
     const moviesWatched = this.state.movies.filter(movieObj => (
       movieObj.status === 'Watched'
     ));
-
-    console.log(moviesWatched);
-
-    this.setState({ watchedMovies: moviesWatched });
 
     if (this.state.isWatchedMoviesClicked === true) {
       this.setState({ isWatchedMoviesClicked: false });
@@ -89,10 +97,6 @@ export default class App extends Component {
     const moviesToWatch = this.state.movies.filter(movieObj => (
       movieObj.status === 'To Watch'
     ));
-
-    console.log(moviesToWatch);
-
-    this.setState({ toWatchMovies: moviesToWatch });
 
     if (this.state.isToWatchMoviesClicked === true) {
       this.setState({ isToWatchMoviesClicked: false });
