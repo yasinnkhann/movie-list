@@ -4,12 +4,23 @@ export default class Movie extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    // BINDERS
+    this.statusClickProxy = this.statusClickProxy.bind(this);
   }
+
+  statusClickProxy() {
+    this.props.statusClick(this.props.movieObj);
+    // this.props.movieObj.status ='Watched'
+  }
+
   render() {
 
     return (
       <Fragment>
-        <li>{this.props.movieObj.title}</li>
+        <div>
+          <li>{this.props.movieObj.title}</li>
+          <button onClick={this.statusClickProxy}>{this.props.movieObj.status}</button>
+        </div>
       </Fragment>
     );
   }

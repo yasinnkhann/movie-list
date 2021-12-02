@@ -31,8 +31,6 @@ export default class AddMovies extends Component {
         <button onClick={this.addBtnProxy}>Add!</button>
         <br />
         <ul>
-          {/* <li>Monk</li>
-          <li>Pepe</li> */}
           {mappedAddedMovies}
         </ul>
       </Fragment>

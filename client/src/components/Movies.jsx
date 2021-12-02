@@ -12,6 +12,7 @@ export default class Movies extends Component {
       <Movie
       key={movie.title.toString()}
       movieObj={movie}
+      statusClick={this.props.statusClick}
       />
     ))
     return (
