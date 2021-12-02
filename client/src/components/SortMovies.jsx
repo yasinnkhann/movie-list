@@ -19,11 +19,21 @@ export default class SortMovies extends Component {
 
   render() {
     const mappedWatchedMovies = this.props.watchedMovies.map(movie => (
-      <li key={movie.title.toString()}>{movie.title}</li>
+      <li
+        key={movie.title.toString()}
+        onClick={() => this.props.openPanel(movie)}
+        >
+          {movie.title}
+      </li>
     ));
 
     const mappedToWatchMovies = this.props.toWatchMovies.map(movie => (
-      <li key={movie.title.toString()}>{movie.title}</li>
+      <li
+        key={movie.title.toString()}
+        onClick={() => this.props.openPanel(movie)}
+        >
+          {movie.title}
+      </li>
     ));
 
     return (

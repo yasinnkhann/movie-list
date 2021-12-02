@@ -10,9 +10,10 @@ export default class Movies extends Component {
 
     const mappedMovies = this.props.movies.map(movie => (
       <Movie
-      key={movie.title.toString()}
-      movieObj={movie}
-      statusClick={this.props.statusClick}
+        key={movie.title.toString()}
+        movieObj={movie}
+        statusClick={this.props.statusClick}
+        openPanel={this.props.openPanel}
       />
     ))
     return (

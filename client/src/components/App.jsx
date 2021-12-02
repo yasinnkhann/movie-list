@@ -4,6 +4,7 @@ import SortMovies from './SortMovies.jsx';
 import SearchBar from './SearchBar.jsx';
 import Movies from './Movies.jsx';
 import movies from '../movies.js';
+import MoviePanel from './MoviePanel.jsx';
 
 export default class App extends Component {
   constructor(props) {
@@ -17,6 +18,8 @@ export default class App extends Component {
       toWatchMovies: [],
       isWatchedMoviesClicked: false,
       isToWatchMoviesClicked: false,
+      selectedMovie: {},
+      isMoviePanelOpen: false,
      };
     // BINDERS
     this.handleSubmitSearch = this.handleSubmitSearch.bind(this);
@@ -24,6 +27,8 @@ export default class App extends Component {
     this.handleStatusClick = this.handleStatusClick.bind(this);
     this.handleWatchedMoviesClick = this.handleWatchedMoviesClick.bind(this);
     this.handleToWatchMoviesClick = this.handleToWatchMoviesClick.bind(this);
+    this.handleOpenPanel = this.handleOpenPanel.bind(this);
+    this.handleClosePanel = this.handleClosePanel.bind(this);
   }
 
   handleSubmitSearch(query) {
@@ -86,6 +91,8 @@ export default class App extends Component {
       movieObj.status === 'Watched'
     ));
 
+    this.setState({ watchedMovies: moviesWatched });
+
     if (this.state.isWatchedMoviesClicked === true) {
       this.setState({ isWatchedMoviesClicked: false });
     } else {
@@ -98,11 +105,24 @@ export default class App extends Component {
       movieObj.status === 'To Watch'
     ));
 
+    this.setState({ toWatchMovies: moviesToWatch });
+
     if (this.state.isToWatchMoviesClicked === true) {
       this.setState({ isToWatchMoviesClicked: false });
     } else {
       this.setState({ isToWatchMoviesClicked: true });
     }
+  }
+
+  handleOpenPanel(movie) {
+    this.setState({
+      selectedMovie: movie,
+      isMoviePanelOpen: true,
+    });
+  }
+
+  handleClosePanel() {
+    this.setState({ isMoviePanelOpen: false });
   }
 
   render() {
@@ -120,6 +140,7 @@ export default class App extends Component {
           toWatchMovies={this.state.toWatchMovies}
           toWatchMoviesClick={this.handleToWatchMoviesClick}
           isToWatchMoviesClicked={this.state.isToWatchMoviesClicked}
+          openPanel={this.handleOpenPanel}
         />
         <br/>
         <br/>
@@ -128,7 +149,14 @@ export default class App extends Component {
           movies={this.state.filteredMovies}
           isNoMovieFound={this.state.isNoMovieFound}
           statusClick={this.handleStatusClick}
+          openPanel={this.handleOpenPanel}
         />
+        {this.state.isMoviePanelOpen && (
+          <MoviePanel
+            movie={this.state.selectedMovie}
+            closePanel={this.handleClosePanel}
+          />
+        )}
       </Fragment>
     );
   }
