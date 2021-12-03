@@ -65,7 +65,7 @@ export default class App extends Component {
     ));
 
     const stringifiedAddedMovies = JSON.stringify(this.state.addedMovies);
-    const stringifiedMovie = JSON.stringify(movie);
+    const stringifiedMovie = JSON.stringify(...movie);
 
     if (!stringifiedAddedMovies.includes(stringifiedMovie)) {
       this.setState({ addedMovies: [...this.state.addedMovies, ...movie] });
@@ -75,9 +75,7 @@ export default class App extends Component {
   handleStatusClick(movieObj) {
     const moviesCopy = [...this.state.movies];
 
-    const movieIdx = this.state.movies.findIndex(movie => (
-      movie === movieObj
-    ));
+    const movieIdx = this.state.movies.indexOf(movieObj);
 
     if (moviesCopy[movieIdx].status === 'To Watch') {
       moviesCopy[movieIdx].status = 'Watched';
