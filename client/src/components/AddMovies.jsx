@@ -8,56 +8,46 @@ export default class AddMovies extends Component {
     this.state = { addMovieQuery: '' };
     // BINDERS
     this.handleChange = this.handleChange.bind(this);
-    // this.addBtnProxy = this.addBtnProxy.bind(this);
+    this.handleAddBtn = this.handleAddBtn.bind(this);
   }
+
+  static contextType = AppContext;
 
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+    // console.log(this.context);
   }
 
-  // addBtnProxy() {
-  //   addBtn(this.state.addMovieQuery);
-  //   this.setState({ addMovieQuery: '' });
-  // }
+  handleAddBtn() {
+    this.context.addBtn(this.state.addMovieQuery);
+    this.setState({ addMovieQuery: '' });
+  }
   render() {
-    // const { addBtn, addedMoviesList, openPanel } = useContext(AppContext);
+    const { addedMoviesList, openPanel } = this.context;
 
-    // const mappedAddedMovies = addedMoviesList.map(movie => (
-    //   <li
-    //     key={movie.title.toString()}
-    //     onClick={() => openPanel(movie)}
-    //   >
-    //       {movie.title}
-    //     </li>
-    // ));
+    const mappedAddedMovies = addedMoviesList.map(movie => (
+      <li
+        key={movie.title.toString()}
+        onClick={() => openPanel(movie)}
+      >
+          {movie.title}
+        </li>
+    ));
     return (
       <Fragment>
-        <AppContext.Consumer>
-          {(value) => (
-            <>
-              <input
-                type='text'
-                name='addMovieQuery'
-                value={this.state.addMovieQuery}
-                placeholder='Add movie title here'
-                onChange={this.handleChange}
-              />
-              <button onClick={() => value.addBtn(this.state.addMovieQuery)}>Add!</button>
-              <br />
-              <ul>
-                {value.addedMoviesList.map(movie => (
-                  <li
-                    key={movie.title.toString()}
-                    onClick={() => value.openPanel(movie)}
-                  >
-                    {movie.title}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-        </AppContext.Consumer>
+        <input
+          type='text'
+          name='addMovieQuery'
+          value={this.state.addMovieQuery}
+          placeholder='Add movie title here'
+          onChange={this.handleChange}
+        />
+        <button onClick={this.handleAddBtn}>Add!</button>
+        <br />
+        <ul>
+          {mappedAddedMovies}
+        </ul>
       </Fragment>
     );
   }

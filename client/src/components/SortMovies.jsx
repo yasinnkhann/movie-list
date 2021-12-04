@@ -1,36 +1,29 @@
 import React, { Component, Fragment } from 'react';
+import AppContext from '../AppContext.js';
 
 export default class SortMovies extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    // BINDERS
-    this.watchedMoviesClickProxy = this.watchedMoviesClickProxy.bind(this);
-    this.toWatchMoviesClickProxy = this.toWatchMoviesClickProxy.bind(this);
   }
 
-  watchedMoviesClickProxy() {
-    this.props.watchedMoviesClick();
-  }
-
-  toWatchMoviesClickProxy() {
-    this.props.toWatchMoviesClick();
-  }
+  static contextType = AppContext;
 
   render() {
-    const mappedWatchedMovies = this.props.watchedMovies.map(movie => (
+    const { watchedMovies, openPanel, toWatchMovies, isWatchedMoviesClicked, isToWatchMoviesClicked, toWatchMoviesClick, watchedMoviesClick } = this.context;
+    const mappedWatchedMovies = watchedMovies.map(movie => (
       <li
         key={movie.title.toString()}
-        onClick={() => this.props.openPanel(movie)}
+        onClick={() => openPanel(movie)}
         >
           {movie.title}
       </li>
     ));
 
-    const mappedToWatchMovies = this.props.toWatchMovies.map(movie => (
+    const mappedToWatchMovies = toWatchMovies.map(movie => (
       <li
         key={movie.title.toString()}
-        onClick={() => this.props.openPanel(movie)}
+        onClick={() => openPanel(movie)}
         >
           {movie.title}
       </li>
@@ -39,16 +32,16 @@ export default class SortMovies extends Component {
     return (
       <Fragment>
         <div>
-          <button onClick={this.watchedMoviesClickProxy}>Watched Movies</button>
-          {this.props.isWatchedMoviesClicked && (
+          <button onClick={watchedMoviesClick}>Watched Movies</button>
+          {isWatchedMoviesClicked && (
             <ul>
               {mappedWatchedMovies}
             </ul>
           )}
         </div>
         <div>
-          <button onClick={this.toWatchMoviesClickProxy}>To Watch Movies</button>
-          {this.props.isToWatchMoviesClicked && (
+          <button onClick={toWatchMoviesClick}>To Watch Movies</button>
+          {isToWatchMoviesClicked && (
             <ul>
               {mappedToWatchMovies}
             </ul>

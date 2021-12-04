@@ -143,6 +143,16 @@ export default class App extends Component {
 
     return (
       <Fragment>
+        {/* <AppContext.Provider value={{
+          appState: this.state,
+          addBtn: this.handleAddBtn,
+          openPanel: this.handleOpenPanel,
+          watchedMoviesClick: this.handleWatchedMoviesClick,
+          toWatchMoviesClick: this.handleToWatchMoviesClick,
+          submitSearch: this.handleSubmitSearch,
+          statusClick: this.handleStatusClick,
+          closePanel: this.handleClosePanel
+        }}> */}
         <AppContext.Provider value={{
           addedMoviesList: this.state.addedMovies,
           addBtn: this.handleAddBtn,
@@ -160,36 +170,14 @@ export default class App extends Component {
           movie: this.state.selectedMovie,
           closePanel: this.handleClosePanel
         }}>
-          <AddMovies
-            // addedMoviesList={this.state.addedMovies}
-            // addBtn={this.handleAddBtn}
-            // openPanel={this.handleOpenPanel}
-          />
-          <SortMovies
-            watchedMovies={this.state.watchedMovies}
-            watchedMoviesClick={this.handleWatchedMoviesClick}
-            isWatchedMoviesClicked={this.state.isWatchedMoviesClicked}
-            toWatchMovies={this.state.toWatchMovies}
-            toWatchMoviesClick={this.handleToWatchMoviesClick}
-            isToWatchMoviesClicked={this.state.isToWatchMoviesClicked}
-            openPanel={this.handleOpenPanel}
-          />
+          <AddMovies />
+          <SortMovies />
           <br/>
           <br/>
-          <SearchBar
-            submitSearch={this.handleSubmitSearch}
-          />
-          <Movies
-            movies={this.state.filteredMovies}
-            isNoMovieFound={this.state.isNoMovieFound}
-            statusClick={this.handleStatusClick}
-            openPanel={this.handleOpenPanel}
-          />
+          <SearchBar />
+          <Movies />
           {this.state.isMoviePanelOpen && (
-            <MoviePanel
-              movie={this.state.selectedMovie}
-              closePanel={this.handleClosePanel}
-            />
+            <MoviePanel />
           )}
         </AppContext.Provider>
       </Fragment>

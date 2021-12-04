@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import AppContext from '../AppContext.js';
 
 export default class SearchBar extends Component {
   constructor(props) {
@@ -6,15 +7,17 @@ export default class SearchBar extends Component {
     this.state = { searchQuery: '' };
     // BINDERS
     this.handleChange = this.handleChange.bind(this);
-    this.submitSearchProxy = this.submitSearchProxy.bind(this);
+    this.handleSubmitSearch = this.handleSubmitSearch.bind(this);
   }
+
+  static contextType = AppContext;
 
   handleChange(e) {
     this.setState({ searchQuery: e.target.value })
   }
 
-  submitSearchProxy() {
-    this.props.submitSearch(this.state.searchQuery);
+  handleSubmitSearch() {
+    this.context.submitSearch(this.state.searchQuery);
     this.setState({ searchQuery: '' });
   }
 
@@ -29,7 +32,7 @@ export default class SearchBar extends Component {
           value={this.state.searchQuery}
           onChange={this.handleChange}
         />
-        <button onClick={this.submitSearchProxy}>Search!</button>
+        <button onClick={this.handleSubmitSearch}>Search!</button>
       </Fragment>
     );
   }

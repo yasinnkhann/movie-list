@@ -1,26 +1,32 @@
 import React, { Component, Fragment } from 'react';
 import Movie from './Movie.jsx';
+import AppContext from '../AppContext.js';
 
 export default class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  static contextType = AppContext;
+
   render() {
 
-    const mappedMovies = this.props.movies.map(movie => (
+    const { movies, statusClick,  openPanel, isNoMovieFound } = this.context;
+
+    const mappedMovies = movies.map(movie => (
       <Movie
         key={movie.title.toString()}
         movieObj={movie}
-        statusClick={this.props.statusClick}
-        openPanel={this.props.openPanel}
+        statusClick={statusClick}
+        openPanel={openPanel}
       />
     ))
     return (
       <Fragment>
         <br />
         <br />
-        {this.props.isNoMovieFound && <span>No Movies Found!</span>}
+        {isNoMovieFound && <span>No Movies Found!</span>}
         <ul>
           {mappedMovies}
         </ul>
