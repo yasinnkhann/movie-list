@@ -1,6 +1,5 @@
-import React, { Component, Fragment, useContext } from 'react';
+import React, { Component, Fragment } from 'react';
 import AppContext from '../AppContext.js';
-
 
 export default class AddMovies extends Component {
   constructor(props) {
@@ -32,7 +31,7 @@ export default class AddMovies extends Component {
         onClick={() => openPanel(movie)}
       >
           {movie.title}
-        </li>
+      </li>
     ));
     return (
       <Fragment>

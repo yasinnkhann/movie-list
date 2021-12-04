@@ -38,6 +38,7 @@ export default class App extends Component {
   async componentDidMount() {
     try {
       // https://api.themoviedb.org/3/movie/550?api_key=stuff
+
       // const res = await axios.get('https://api.themoviedb.org/3/movie/popular', { params: { api_key: API_KEY } });
       // // OR USE axios.create instance
       const res = await instance.get('movie/popular');
@@ -51,6 +52,7 @@ export default class App extends Component {
     const moviesFiltered = this.state.movies.filter(movie => (
       movie.title.toLowerCase().includes(query.toLowerCase())
     ));
+
     this.setState({ filteredMovies: moviesFiltered });
 
     if (moviesFiltered.length === 0) {
