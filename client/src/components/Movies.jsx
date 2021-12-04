@@ -12,9 +12,9 @@ export default class Movies extends Component {
 
   render() {
 
-    const { movies, statusClick,  openPanel, isNoMovieFound } = this.context;
+    const { appState, statusClick,  openPanel } = this.context;
 
-    const mappedMovies = movies.map(movie => (
+    const mappedMovies = appState.filteredMovies.map(movie => (
       <Movie
         key={movie.title.toString()}
         movieObj={movie}
@@ -26,7 +26,7 @@ export default class Movies extends Component {
       <Fragment>
         <br />
         <br />
-        {isNoMovieFound && <span>No Movies Found!</span>}
+        {appState.isNoMovieFound && <span>No Movies Found!</span>}
         <ul>
           {mappedMovies}
         </ul>

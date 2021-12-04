@@ -24,9 +24,9 @@ export default class AddMovies extends Component {
     this.setState({ addMovieQuery: '' });
   }
   render() {
-    const { addedMoviesList, openPanel } = this.context;
+    const { appState, openPanel } = this.context;
 
-    const mappedAddedMovies = addedMoviesList.map(movie => (
+    const mappedAddedMovies = appState.addedMovies.map(movie => (
       <li
         key={movie.title.toString()}
         onClick={() => openPanel(movie)}

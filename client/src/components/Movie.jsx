@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import AppContext from '../AppContext.js';
 
 export default class Movie extends Component {
   constructor(props) {
@@ -9,12 +10,14 @@ export default class Movie extends Component {
     this.openPanelProxy = this.openPanelProxy.bind(this);
   }
 
+  static contextType = AppContext;
+
   statusClickProxy() {
-    this.props.statusClick(this.props.movieObj);
+    this.context.statusClick(this.props.movieObj);
   }
 
   openPanelProxy() {
-    this.props.openPanel(this.props.movieObj);
+    this.context.openPanel(this.props.movieObj);
   }
 
   render() {

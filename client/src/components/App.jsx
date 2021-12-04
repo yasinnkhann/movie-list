@@ -143,7 +143,7 @@ export default class App extends Component {
 
     return (
       <Fragment>
-        {/* <AppContext.Provider value={{
+        <AppContext.Provider value={{
           appState: this.state,
           addBtn: this.handleAddBtn,
           openPanel: this.handleOpenPanel,
@@ -151,23 +151,6 @@ export default class App extends Component {
           toWatchMoviesClick: this.handleToWatchMoviesClick,
           submitSearch: this.handleSubmitSearch,
           statusClick: this.handleStatusClick,
-          closePanel: this.handleClosePanel
-        }}> */}
-        <AppContext.Provider value={{
-          addedMoviesList: this.state.addedMovies,
-          addBtn: this.handleAddBtn,
-          openPanel: this.handleOpenPanel,
-          watchedMovies: this.state.watchedMovies,
-          watchedMoviesClick: this.handleWatchedMoviesClick,
-          isWatchedMoviesClicked: this.state.isWatchedMoviesClicked,
-          toWatchMovies: this.state.toWatchMovies,
-          toWatchMoviesClick: this.handleToWatchMoviesClick,
-          isToWatchMoviesClicked: this.state.isToWatchMoviesClicked,
-          submitSearch: this.handleSubmitSearch,
-          movies: this.state.filteredMovies,
-          isNoMovieFound: this.state.isNoMovieFound,
-          statusClick: this.handleStatusClick,
-          movie: this.state.selectedMovie,
           closePanel: this.handleClosePanel
         }}>
           <AddMovies />

@@ -11,20 +11,20 @@ export default class MoviePanel extends Component {
 
   render() {
 
-    const { movie, closePanel } = this.context;
+    const { appState, closePanel } = this.context;
 
     return (
     <div id="Modal">
       <div className="overlay">
         <div className="content">
-          <h2>Title: {movie.title}</h2>
-          <span>Status: {movie.status}</span>
+          <h2>Title: {appState.selectedMovie.title}</h2>
+          <span>Status: {appState.selectedMovie.status}</span>
           <br />
-          <span>Runtime: {movie.runTime}</span>
+          <span>Runtime: {appState.selectedMovie.runTime}</span>
           <br />
-          <span>Metascore: {movie.metaScore}</span>
+          <span>Metascore: {appState.selectedMovie.metaScore}</span>
           <br />
-          <span>IMDB Rating: {movie.imdbRating}</span>
+          <span>IMDB Rating: {appState.selectedMovie.imdbRating}</span>
           <br />
           <button onClick={closePanel}>Close</button>
         </div>

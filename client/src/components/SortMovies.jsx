@@ -10,8 +10,8 @@ export default class SortMovies extends Component {
   static contextType = AppContext;
 
   render() {
-    const { watchedMovies, openPanel, toWatchMovies, isWatchedMoviesClicked, isToWatchMoviesClicked, toWatchMoviesClick, watchedMoviesClick } = this.context;
-    const mappedWatchedMovies = watchedMovies.map(movie => (
+    const { appState, openPanel, toWatchMoviesClick, watchedMoviesClick } = this.context;
+    const mappedWatchedMovies = appState.watchedMovies.map(movie => (
       <li
         key={movie.title.toString()}
         onClick={() => openPanel(movie)}
@@ -20,7 +20,7 @@ export default class SortMovies extends Component {
       </li>
     ));
 
-    const mappedToWatchMovies = toWatchMovies.map(movie => (
+    const mappedToWatchMovies = appState.toWatchMovies.map(movie => (
       <li
         key={movie.title.toString()}
         onClick={() => openPanel(movie)}
@@ -33,7 +33,7 @@ export default class SortMovies extends Component {
       <Fragment>
         <div>
           <button onClick={watchedMoviesClick}>Watched Movies</button>
-          {isWatchedMoviesClicked && (
+          {appState.isWatchedMoviesClicked && (
             <ul>
               {mappedWatchedMovies}
             </ul>
@@ -41,7 +41,7 @@ export default class SortMovies extends Component {
         </div>
         <div>
           <button onClick={toWatchMoviesClick}>To Watch Movies</button>
-          {isToWatchMoviesClicked && (
+          {appState.isToWatchMoviesClicked && (
             <ul>
               {mappedToWatchMovies}
             </ul>
