@@ -8,6 +8,7 @@ import movies from '../movies.js';
 import MoviePanel from './MoviePanel.jsx';
 import API_KEY from '../config.js';
 import { instance } from '../axiosInstance.js';
+import AppContext from '../AppContext.js';
 
 export default class App extends Component {
   constructor(props) {
@@ -142,35 +143,55 @@ export default class App extends Component {
 
     return (
       <Fragment>
-        <AddMovies
-          addedMoviesList={this.state.addedMovies}
-          addBtn={this.handleAddBtn}
-          openPanel={this.handleOpenPanel}
-        />
-        <SortMovies
-          watchedMovies={this.state.watchedMovies}
-          watchedMoviesClick={this.handleWatchedMoviesClick}
-          isWatchedMoviesClicked={this.state.isWatchedMoviesClicked}
-          toWatchMovies={this.state.toWatchMovies}
-          toWatchMoviesClick={this.handleToWatchMoviesClick}
-          isToWatchMoviesClicked={this.state.isToWatchMoviesClicked}
-          openPanel={this.handleOpenPanel}
-        />
-        <br/>
-        <br/>
-        <SearchBar submitSearch={this.handleSubmitSearch} />
-        <Movies
-          movies={this.state.filteredMovies}
-          isNoMovieFound={this.state.isNoMovieFound}
-          statusClick={this.handleStatusClick}
-          openPanel={this.handleOpenPanel}
-        />
-        {this.state.isMoviePanelOpen && (
-          <MoviePanel
-            movie={this.state.selectedMovie}
-            closePanel={this.handleClosePanel}
+        <AppContext.Provider value={{
+          addedMoviesList: this.state.addedMovies,
+          addBtn: this.handleAddBtn,
+          openPanel: this.handleOpenPanel,
+          watchedMovies: this.state.watchedMovies,
+          watchedMoviesClick: this.handleWatchedMoviesClick,
+          isWatchedMoviesClicked: this.state.isWatchedMoviesClicked,
+          toWatchMovies: this.state.toWatchMovies,
+          toWatchMoviesClick: this.handleToWatchMoviesClick,
+          isToWatchMoviesClicked: this.state.isToWatchMoviesClicked,
+          submitSearch: this.handleSubmitSearch,
+          movies: this.state.filteredMovies,
+          isNoMovieFound: this.state.isNoMovieFound,
+          statusClick: this.handleStatusClick,
+          movie: this.state.selectedMovie,
+          closePanel: this.handleClosePanel
+        }}>
+          <AddMovies
+            // addedMoviesList={this.state.addedMovies}
+            // addBtn={this.handleAddBtn}
+            // openPanel={this.handleOpenPanel}
           />
-        )}
+          <SortMovies
+            watchedMovies={this.state.watchedMovies}
+            watchedMoviesClick={this.handleWatchedMoviesClick}
+            isWatchedMoviesClicked={this.state.isWatchedMoviesClicked}
+            toWatchMovies={this.state.toWatchMovies}
+            toWatchMoviesClick={this.handleToWatchMoviesClick}
+            isToWatchMoviesClicked={this.state.isToWatchMoviesClicked}
+            openPanel={this.handleOpenPanel}
+          />
+          <br/>
+          <br/>
+          <SearchBar
+            submitSearch={this.handleSubmitSearch}
+          />
+          <Movies
+            movies={this.state.filteredMovies}
+            isNoMovieFound={this.state.isNoMovieFound}
+            statusClick={this.handleStatusClick}
+            openPanel={this.handleOpenPanel}
+          />
+          {this.state.isMoviePanelOpen && (
+            <MoviePanel
+              movie={this.state.selectedMovie}
+              closePanel={this.handleClosePanel}
+            />
+          )}
+        </AppContext.Provider>
       </Fragment>
     );
   }

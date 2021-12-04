@@ -1,4 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useContext } from 'react';
+import AppContext from '../AppContext.js';
+
 
 export default class AddMovies extends Component {
   constructor(props) {
@@ -6,40 +8,56 @@ export default class AddMovies extends Component {
     this.state = { addMovieQuery: '' };
     // BINDERS
     this.handleChange = this.handleChange.bind(this);
-    this.addBtnProxy = this.addBtnProxy.bind(this);
+    // this.addBtnProxy = this.addBtnProxy.bind(this);
   }
+
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  addBtnProxy() {
-    this.props.addBtn(this.state.addMovieQuery);
-    this.setState({ addMovieQuery: '' });
-  }
+  // addBtnProxy() {
+  //   addBtn(this.state.addMovieQuery);
+  //   this.setState({ addMovieQuery: '' });
+  // }
   render() {
-    const mappedAddedMovies = this.props.addedMoviesList.map(movie => (
-      <li
-        key={movie.title.toString()}
-        onClick={() => this.props.openPanel(movie)}
-      >
-          {movie.title}
-        </li>
-    ));
+    // const { addBtn, addedMoviesList, openPanel } = useContext(AppContext);
+
+    // const mappedAddedMovies = addedMoviesList.map(movie => (
+    //   <li
+    //     key={movie.title.toString()}
+    //     onClick={() => openPanel(movie)}
+    //   >
+    //       {movie.title}
+    //     </li>
+    // ));
     return (
       <Fragment>
-        <input
-          type='text'
-          name='addMovieQuery'
-          value={this.state.addMovieQuery}
-          placeholder='Add movie title here'
-          onChange={this.handleChange}
-        />
-        <button onClick={this.addBtnProxy}>Add!</button>
-        <br />
-        <ul>
-          {mappedAddedMovies}
-        </ul>
+        <AppContext.Consumer>
+          {(value) => (
+            <>
+              <input
+                type='text'
+                name='addMovieQuery'
+                value={this.state.addMovieQuery}
+                placeholder='Add movie title here'
+                onChange={this.handleChange}
+              />
+              <button onClick={() => value.addBtn(this.state.addMovieQuery)}>Add!</button>
+              <br />
+              <ul>
+                {value.addedMoviesList.map(movie => (
+                  <li
+                    key={movie.title.toString()}
+                    onClick={() => value.openPanel(movie)}
+                  >
+                    {movie.title}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </AppContext.Consumer>
       </Fragment>
     );
   }
