@@ -10,12 +10,16 @@ export default function Movie({ statusClick, openPanel, movieObj }) {
     openPanel(movieObj);
   };
 
-    return (
-      <Fragment>
-        <div>
-          <li onClick={openPanelProxy}>{movieObj.title}</li>
-          <button onClick={statusClickProxy}>{movieObj.status}</button>
-        </div>
-      </Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      <div>
+        <li onClick={openPanelProxy}>
+          {movieObj.title}
+        </li>
+        <button onClick={statusClickProxy}>
+          {movieObj.status}
+        </button>
+      </div>
+    </Fragment>
+  );
+}

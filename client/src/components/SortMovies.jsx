@@ -31,7 +31,9 @@ export default function({ watchedMoviesClick, toWatchMoviesClick, watchedMovies,
     return (
       <Fragment>
         <div>
-          <button onClick={watchedMoviesClickProxy}>Watched Movies</button>
+          <button onClick={watchedMoviesClickProxy}>
+            Watched Movies
+          </button>
           {isWatchedMoviesClicked && (
             <ul>
               {mappedWatchedMovies}
@@ -39,7 +41,9 @@ export default function({ watchedMoviesClick, toWatchMoviesClick, watchedMovies,
           )}
         </div>
         <div>
-          <button onClick={toWatchMoviesClickProxy}>To Watch Movies</button>
+          <button onClick={toWatchMoviesClickProxy}>
+            To Watch Movies
+          </button>
           {isToWatchMoviesClicked && (
             <ul>
               {mappedToWatchMovies}

@@ -29,7 +29,9 @@ export default class SearchBar extends Component {
           value={this.state.searchQuery}
           onChange={this.handleChange}
         />
-        <button onClick={this.submitSearchProxy}>Search!</button>
+        <button onClick={this.submitSearchProxy}>
+          Search!
+        </button>
       </Fragment>
     );
   }

@@ -23,8 +23,8 @@ export default class AddMovies extends Component {
         key={movie.title.toString()}
         onClick={() => this.props.openPanel(movie)}
       >
-          {movie.title}
-        </li>
+        {movie.title}
+      </li>
     ));
     return (
       <Fragment>
@@ -35,7 +35,9 @@ export default class AddMovies extends Component {
           placeholder='Add movie title here'
           onChange={this.handleChange}
         />
-        <button onClick={this.addBtnProxy}>Add!</button>
+        <button onClick={this.addBtnProxy}>
+          Add!
+        </button>
         <br />
         <ul>
           {mappedAddedMovies}
