@@ -1,31 +1,21 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 
-export default class Movie extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    // BINDERS
-    this.statusClickProxy = this.statusClickProxy.bind(this);
-    this.openPanelProxy = this.openPanelProxy.bind(this);
-  }
+export default function Movie({ statusClick, openPanel, movieObj }) {
 
-  statusClickProxy() {
-    this.props.statusClick(this.props.movieObj);
-  }
+  const statusClickProxy = () => {
+    statusClick(movieObj);
+  };
 
-  openPanelProxy() {
-    this.props.openPanel(this.props.movieObj);
-  }
-
-  render() {
+  const openPanelProxy = () => {
+    openPanel(movieObj);
+  };
 
     return (
       <Fragment>
         <div>
-          <li onClick={this.openPanelProxy}>{this.props.movieObj.title}</li>
-          <button onClick={this.statusClickProxy}>{this.props.movieObj.status}</button>
+          <li onClick={openPanelProxy}>{movieObj.title}</li>
+          <button onClick={statusClickProxy}>{movieObj.status}</button>
         </div>
       </Fragment>
     );
   }
-}
