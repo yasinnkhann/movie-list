@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 
-export default function({ watchedMoviesClick, toWatchMoviesClick, watchedMovies, openPanel,  toWatchMovies, isWatchedMoviesClicked, isToWatchMoviesClicked }) {
+export default function({
+  watchedMoviesClick, toWatchMoviesClick, watchedMovies, openPanel,  toWatchMovies, isWatchedMoviesClicked, isToWatchMoviesClicked
+}) {
 
   const watchedMoviesClickProxy = () => {
     watchedMoviesClick();

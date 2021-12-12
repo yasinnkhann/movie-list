@@ -3,7 +3,6 @@ import React, { Component, Fragment } from 'react';
 export default class MoviePanel extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
     // BINDERS
     this.handleKeyUp = this.handleKeyUp.bind(this);
   }
@@ -21,7 +20,6 @@ export default class MoviePanel extends Component {
       27: () => {
         e.preventDefault();
         this.props.closePanel();
-        window.removeEventListener('keyup', this.handleKeyUp, false);
       },
     };
 
