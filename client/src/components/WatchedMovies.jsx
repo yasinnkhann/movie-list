@@ -25,7 +25,7 @@ export default function WatchedMovies() {
 						{watchedMovies.length === 0 && <div>No watched movies</div>}
 						<div>
 							{watchedMovies.map(movie => (
-								<p key={movie.id}>{movie.title}</p>
+								<Movie key={movie.id} movie={movie} />
 							))}
 						</div>
 					</>
@@ -42,7 +42,7 @@ export default function WatchedMovies() {
 				{showNotWatched && (
 					<div>
 						{notWatchedMovies.map(movie => (
-							<p key={movie.id}>{movie.title}</p>
+							<Movie key={movie.id} movie={movie} />
 						))}
 					</div>
 				)}
