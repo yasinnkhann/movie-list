@@ -52,6 +52,17 @@ export const MoviesSlice = createSlice({
 	},
 });
 
+export const {
+	getMovies,
+	fetchingMovies,
+	fetchMoviesSuccess,
+	fetchMoviesFailure,
+	handleSearch,
+	handleClickOnTitle,
+	handleCloseModal,
+	handleMovieStatus,
+} = MoviesSlice.actions;
+
 export const fetchMovies = () => async dispatch => {
 	dispatch(fetchingMovies());
 	try {
@@ -66,16 +77,6 @@ export const fetchMovies = () => async dispatch => {
 	}
 };
 
-export const {
-	getMovies,
-	fetchingMovies,
-	fetchMoviesSuccess,
-	fetchMoviesFailure,
-	handleSearch,
-	handleClickOnTitle,
-	handleCloseModal,
-	handleMovieStatus,
-} = MoviesSlice.actions;
 export const moviesSelector = state => state.movies;
 export const currentFilmSelector = state => state.movies.currentFilm;
 export default MoviesSlice.reducer;
