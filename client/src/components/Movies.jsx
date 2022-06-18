@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectMovies } from '../features/moviesSlice';
+import { moviesSelector } from '../features/moviesSlice';
 import Movie from './Movie.jsx';
 
 export default function Movies() {
-	const movies = useSelector(selectMovies);
+	const { films: movies } = useSelector(moviesSelector);
 	return (
 		<div>
 			{movies.map(movie => (
