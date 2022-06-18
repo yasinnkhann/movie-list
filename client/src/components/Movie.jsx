@@ -5,8 +5,8 @@ import { handleClickOnTitle } from '../features/moviesSlice';
 export default function Movie({ movie }) {
 	const dispatch = useDispatch();
 	return (
-		<div onClick={() => dispatch(handleClickOnTitle(movie))}>
-			<h1>{movie.title}</h1>
+		<div>
+			<h1 onClick={() => dispatch(handleClickOnTitle(movie))}>{movie.title}</h1>
 		</div>
 	);
 }

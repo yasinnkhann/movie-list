@@ -8,6 +8,7 @@ export const MoviesSlice = createSlice({
 		isLoading: false,
 		error: null,
 		films: [],
+		filteredFilms: [],
 		currentFilm: null,
 	},
 	reducers: {
@@ -20,6 +21,7 @@ export const MoviesSlice = createSlice({
 		fetchMoviesSuccess: (state, action) => {
 			state.isLoading = false;
 			state.films = action.payload;
+			state.filteredFilms = action.payload;
 			state.error = null;
 		},
 		fetchMoviesFailure: (state, action) => {
@@ -27,7 +29,7 @@ export const MoviesSlice = createSlice({
 			state.error = action.payload;
 		},
 		handleSearch: (state, action) => {
-			state.films = state.films.filter(film =>
+			state.filteredFilms = state.films.filter(film =>
 				film.title.toLowerCase().includes(action.payload.toLowerCase())
 			);
 		},

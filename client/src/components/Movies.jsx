@@ -4,7 +4,7 @@ import { moviesSelector } from '../features/moviesSlice';
 import Movie from './Movie.jsx';
 
 export default function Movies() {
-	const { films: movies } = useSelector(moviesSelector);
+	const { filteredFilms: movies } = useSelector(moviesSelector);
 	return (
 		<div>
 			{movies.map(movie => (
