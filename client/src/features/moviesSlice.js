@@ -39,6 +39,16 @@ export const MoviesSlice = createSlice({
 		handleCloseModal: state => {
 			state.currentFilm = null;
 		},
+		handleMovieStatus: (state, action) => {
+			const filmsCopy = [...state.films];
+			filmsCopy.map(film =>
+				film.id === action.payload.id
+					? (film.status = action.payload.status)
+					: film
+			);
+			state.films = filmsCopy;
+			state.filteredFilms = filmsCopy;
+		},
 	},
 });
 
@@ -48,6 +58,8 @@ export const fetchMovies = () => async dispatch => {
 		const {
 			data: { results },
 		} = await instance.get('/movie/popular');
+		results.map(film => (film.status = 'Not Watched'));
+
 		dispatch(fetchMoviesSuccess(results));
 	} catch (error) {
 		dispatch(fetchMoviesFailure(error));
@@ -62,6 +74,7 @@ export const {
 	handleSearch,
 	handleClickOnTitle,
 	handleCloseModal,
+	handleMovieStatus,
 } = MoviesSlice.actions;
 export const moviesSelector = state => state.movies;
 export const currentFilmSelector = state => state.movies.currentFilm;

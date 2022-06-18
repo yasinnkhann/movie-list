@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Movies from './Movies.jsx';
 import Search from './Search.jsx';
 import Modal from './Modal.jsx';
+import WatchedMovies from './WatchedMovies.jsx';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	fetchMovies,
@@ -29,6 +30,7 @@ export default function App() {
 
 	return (
 		<div>
+			<WatchedMovies />
 			<Search />
 			<Movies />
 			{currentFilm && <Modal movie={currentFilm} />}

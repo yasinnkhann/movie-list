@@ -8,7 +8,7 @@ export default function Movies() {
 	return (
 		<div>
 			{movies.map(movie => (
-				<Movie key={movie.title} movie={movie} />
+				<Movie key={movie.id} movie={movie} />
 			))}
 		</div>
 	);
