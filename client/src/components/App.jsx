@@ -13,8 +13,6 @@ export default class App extends Component {
 		super(props);
 		this.state = {
 			movies: [],
-			filteredMovies: [],
-			isNoMovieFound: false,
 			addedMovies: [],
 			watchedMovies: [],
 			toWatchMovies: [],
@@ -22,6 +20,7 @@ export default class App extends Component {
 			isToWatchMoviesClicked: false,
 			selectedMovie: {},
 			isMoviePanelOpen: false,
+			searchQuery: '',
 		};
 		// BINDERS
 		this.handleSubmitSearch = this.handleSubmitSearch.bind(this);
@@ -42,23 +41,14 @@ export default class App extends Component {
 				data: { results },
 			} = await instance.get('movie/popular');
 			console.log(results);
-			this.setState({ movies: results, filteredMovies: results });
+			this.setState({ movies: results });
 		} catch (err) {
 			console.error(err);
 		}
 	}
 
-	handleSubmitSearch(query) {
-		const moviesFiltered = this.state.movies.filter(movie =>
-			movie.title.toLowerCase().includes(query.toLowerCase())
-		);
-		this.setState({ filteredMovies: moviesFiltered });
-
-		if (moviesFiltered.length === 0) {
-			this.setState({ isNoMovieFound: true });
-		} else {
-			this.setState({ isNoMovieFound: false });
-		}
+	handleSubmitSearch(searchQuery) {
+		this.setState({ searchQuery });
 	}
 
 	handleAddBtn(addBtnQuery) {
@@ -160,10 +150,10 @@ export default class App extends Component {
 				<br />
 				<SearchBar submitSearch={this.handleSubmitSearch} />
 				<Movies
-					movies={this.state.filteredMovies}
-					isNoMovieFound={this.state.isNoMovieFound}
+					movies={this.state.movies}
 					statusClick={this.handleStatusClick}
 					openPanel={this.handleOpenPanel}
+					searchQuery={this.state.searchQuery}
 				/>
 				{this.state.isMoviePanelOpen && (
 					<MoviePanel

@@ -1,24 +1,34 @@
 import React, { Fragment } from 'react';
 import Movie from './Movie.jsx';
 
-export default function Movies({ movies, statusClick, openPanel, isNoMovieFound }) {
+export default function Movies({
+	movies,
+	statusClick,
+	openPanel,
+	searchQuery,
+}) {
+	const filteredMovies = movies.filter(movie =>
+		movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+	);
 
-    const mappedMovies = movies.map(movie => (
-      <Movie
-        key={movie.title.toString()}
-        movieObj={movie}
-        statusClick={statusClick}
-        openPanel={openPanel}
-      />
-    ));
-    return (
-      <Fragment>
-        <br />
-        <br />
-        {isNoMovieFound && <span>No Movies Found!</span>}
-        <ul>
-          {mappedMovies}
-        </ul>
-      </Fragment>
-    );
-  }
+	return (
+		<Fragment>
+			<br />
+			<br />
+			{filteredMovies.length === 0 ? (
+				<span>No Movies Found!</span>
+			) : (
+				<ul>
+					{filteredMovies.map(movie => (
+						<Movie
+							key={movie.title.toString()}
+							movieObj={movie}
+							statusClick={statusClick}
+							openPanel={openPanel}
+						/>
+					))}
+				</ul>
+			)}
+		</Fragment>
+	);
+}
