@@ -8,11 +8,11 @@ export const MoviesSlice = createSlice({
 		isLoading: false,
 		error: null,
 		films: [],
-		filteredFilms: [],
 		currentFilm: null,
+		query: '',
 	},
 	reducers: {
-		getMovies: state => {
+		getStaticMovies: state => {
 			state.films = movieData;
 		},
 		fetchingMovies: state => {
@@ -21,7 +21,6 @@ export const MoviesSlice = createSlice({
 		fetchMoviesSuccess: (state, action) => {
 			state.isLoading = false;
 			state.films = action.payload;
-			state.filteredFilms = action.payload;
 			state.error = null;
 		},
 		fetchMoviesFailure: (state, action) => {
@@ -29,9 +28,7 @@ export const MoviesSlice = createSlice({
 			state.error = action.payload;
 		},
 		handleSearch: (state, action) => {
-			state.filteredFilms = state.films.filter(film =>
-				film.title.toLowerCase().includes(action.payload.toLowerCase())
-			);
+			state.query = action.payload;
 		},
 		handleClickOnTitle: (state, action) => {
 			state.currentFilm = action.payload;
@@ -47,13 +44,12 @@ export const MoviesSlice = createSlice({
 					: film
 			);
 			state.films = filmsCopy;
-			state.filteredFilms = filmsCopy;
 		},
 	},
 });
 
 export const {
-	getMovies,
+	getStaticMovies,
 	fetchingMovies,
 	fetchMoviesSuccess,
 	fetchMoviesFailure,

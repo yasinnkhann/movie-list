@@ -7,7 +7,7 @@ export default function WatchedMovies() {
 	const [showWatched, setShowWatched] = useState(false);
 	const [showNotWatched, setShowNotWatched] = useState(false);
 
-	const { filteredFilms: movies } = useSelector(moviesSelector);
+	const { films: movies } = useSelector(moviesSelector);
 	const watchedMovies = movies.filter(movie => movie.status === 'Watched');
 	const notWatchedMovies = movies.filter(
 		movie => movie.status === 'Not Watched'
