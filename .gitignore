@@ -3,4 +3,4 @@ bundle.js
 client/src/config.js
 .env.local
 .DS_Store
-client/dist
+bundle.js.map
